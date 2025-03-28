@@ -309,6 +309,7 @@ def parse_chat(messages: list) -> list:
             - "edited" (bool): Whether the message was edited (True if it contains "<This message was edited>").
     """
     parsed_chat = []
+    newline = '\n'
     for i in messages:
         # Split message into not more than 2 parts, timeframe(date and time) and message body(sender name and message content)
         temp_list = caution_split(i, " - ", 2)
@@ -334,7 +335,7 @@ def parse_chat(messages: list) -> list:
         elif ".vcf" in msg_body:
             msg_type = "contact"
             msg_body = extract_contact(msg_body.split(".vcf")[0] + ".vcf")
-        elif ".pdf" in msg_body or ".PDF" in msg_body or detect_encrypted_pdf(f"static/chat-details/{msg_body.replace('(file attached)\n', '')}"):
+        elif ".pdf" in msg_body or ".PDF" in msg_body or detect_encrypted_pdf(f"static/chat-details/{msg_body.replace(f'(file attached){newline}', '')}"):
             msg_type = "pdf"
             msg_body = msg_body.replace("(file attached)\n", "|")
             if msg_body[:3] == "DOC":
