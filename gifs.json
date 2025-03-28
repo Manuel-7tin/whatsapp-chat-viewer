@@ -1,0 +1,20 @@
+{
+    "gif1" : [
+        "../static/assets/gif/hello-cute-cat.gif", "../static/assets/gif/meme.gif",
+        "../static/assets/gif/weird-stare.gif", "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3dvNGlsdHk2bTkyc2hxNGMxbmt0OWQzM3c0dGNoNzE0YTZ3c3NtMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif",
+        "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExN21lbjFzdjE4OHZkbGJwNGg4YTdibWczZzcyZzMxNGhrbDQwcWZqZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kd9BlRovbPOykLBMqX/giphy.gif",
+        "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTA4MG50bXhveHB6bzdrNjRoYnp4OWJpaTVsc3p4MzA4cWJkdG5pbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cJMlR1SsCSkUjVY3iK/giphy.gif",
+        "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMm84eGtyOG9iZmZ3YzMzeHozdGxpbTE0djRjZnB6OHd2dWZlNWYxbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zZMTVkTeEfeEg/giphy.gif",
+        "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGNxM3o3YmFwbDl5enV0ZXlxaHpjcHg0emYwdXVyYWQ4M3N1OHJhaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xL7PDV9frcudO/giphy.gif",
+        "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGUyZHYzNGNmMTEyY2lkeWh2ZWppcnUyZ2d5NWR1b2hidmszY2s5MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JiFm4GR19zyRa/giphy.gif"
+    ],
+    "gif2": [
+        "../static/assets/gif/kimetsu-no-yaiba.gif", "../static/assets/gif/eren-jaeger.gif",
+        "../static/assets/gif/anime-boy.gif", "../static/assets/gif/gojo.gif", "../static/assets/gif/alarm.gif",
+        "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWFtamdoNWdzbzFrbmgwYm5tbXVvanVhMWdjZ3F6MXk4dHYwbmNndiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wkW0maGDN1eSc/giphy.gif",
+        "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3dmeG1iZjl4cXMzMWplNDcxbnVhdWJjYjdlbXQ4amhwM3ludnRwNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Yv6RcuiyHYmn6/giphy.gif",
+        "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDBzZ2Y1aDgxY3Q5bGk1bjU0ZHdtN2Zlc3Z3b2ZwZmhlMXVybjA2MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/maINkm7zjcL4s/giphy.gif",
+        "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzV2eXp6MTJ3YXVnbjBsbnloemVjeGI0ZjdvYnRsejF0OW5tOWlnOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HidxJODnXSSZxYlkwy/giphy.gif",
+        "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWxjd2E4eTlvOGxvNG0wZTQ5Znk4a3lpa21xcHRlZzQydDk5cWdwbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vPyOVP20pzdRw2ZFCK/giphy.gif"
+    ]
+}

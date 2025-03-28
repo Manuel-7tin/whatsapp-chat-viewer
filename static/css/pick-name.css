@@ -1,0 +1,82 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Centered Container */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+/* Heading */
+h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Styled Radio Button */
+.radio-label {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background: #eee;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.radio-label:hover {
+    background: #ddd;
+}
+
+/* Hide Default Radio */
+.radio-label input {
+    display: none;
+}
+
+/* Custom Radio Circle */
+.custom-radio {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #555;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+
+/* Active Selection */
+.radio-label input:checked + .custom-radio {
+    background: #3498db;
+    border-color: #3498db;
+}
+
+/* Submit Button */
+button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    background: #3498db;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #2980b9;
+}

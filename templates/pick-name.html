@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select a Name</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pick-name.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Select a Name</h2>
+        <p>These names were found in the chat, please select yours.</p>
+        <form action="{{ url_for('render_chat') }}" method="post">
+            {% for name in names %}
+                <label class="radio-label">
+                    <input type="radio" name="username" value="{{ name }}">
+                    <span class="custom-radio"></span> {{ name }}
+                </label><br>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>

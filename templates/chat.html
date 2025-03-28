@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Viewer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .container {
+            display: flex;
+            width: 92%;
+            height: 85vh;
+            align-items: center;
+        }
+        .gif-container {
+            width: 20%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gif-container img {
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+        }
+        .chat-container {
+            flex: 1;
+            height: 100%;
+            background-color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .message {
+            max-width: 60%;
+            padding: 10px;
+            padding-top: 5px;
+            padding-bottom: 15px;
+            margin: 5px;
+            border-radius: 10px;
+            position: relative;
+            word-wrap: break-word;
+            display: flex;
+            flex-direction: column;
+        }
+        .sent {
+            background-color: #25D366;
+            align-self: flex-end;
+            color: white;
+        }
+        .received {
+            background-color: #fff;
+            align-self: flex-start;
+            border: 1px solid #ccc;
+        }
+        .edited {
+            font-size: 0.6em;
+            color: gray;
+            position: absolute;
+            bottom: 2px;
+            right: 43px;
+        }
+        .name {
+            font-weight: bold;
+            font-size: 12px;
+            color: #25d366;  /* WhatsApp green */
+            display: block;
+            margin-bottom: 2px;
+        }
+        .s {
+            color: #20948B;
+            font-weight: bold;
+            font-size: 13px;
+            align-self: flex-end; /* Moves sender name to the right */
+        }
+        .system-message {
+            background-color: #2A3942; /* WhatsApp's dark system message color */
+            color: #D1D7DB; /* Light grayish text color */
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-align: center;
+            width: fit-content;
+            margin: 10px auto; /* Centers it horizontally */
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        .timestamp {
+            position: absolute;
+            bottom: 2px;
+            right: 10px;
+            font-size: 0.7em;
+            color: #2A3132;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gif-container left-gifs">
+            <img id="leftGif" src="{{ left_gifs[0] }}" alt="GIF">
+        </div>
+
+        <div class="chat-container">
+            {% set ns = namespace(prev_date="None") %}
+
+            {% for msg in chat_manager.chat %}
+                {% set ns2 = namespace(continue=True) %}
+                {% set msg_date = msg.date.strftime("%B %d, %Y") %}
+                {% if ns.prev_date != msg_date %}
+                    <div class="system-message">
+                        {{ msg_date }}
+                    </div>
+                    {% set ns.prev_date = msg_date %}
+                {% endif %}
+                {% if msg.type == 'info' %}
+                    <div style="color: #ffce00;" class="system-message">
+                        {{ msg.body | replace('\n', '<br>') | safe }}
+                    </div>
+                    {% set ns2.continue = False %}
+                {% endif %}
+
+                {% if ns2.continue %}
+                    <div class="message {% if msg.name == chat_manager.username %}sent{% else %}received{% endif %}">
+                        <span class="name {% if msg.name == chat_manager.username %}s{% else %}r{% endif %}">{{msg.name}}</span>
+                        {% if msg.type == 'text' %}
+                            {{ msg.body | replace('\n', '<br>') | safe }}
+                        {% elif msg.type == 'image' %}
+                            <img src="{{ url_for('static', filename='chat-details/' + msg.body.split('|')[0].strip(' ')) }}" width="200px">
+                            <span>{{ msg.body.split('|')[1].strip(' ') }}</span>
+                        {% elif msg.type == 'sticker' %}
+                            <img src="{{ url_for('static', filename='chat-details/' + msg.body.split('|')[0]) }}" width="100px">
+                        {% elif msg.type == 'video' %}
+                            <video controls width="200px">
+                                <source src="{{ url_for('static', filename='chat-details/' + msg.body.split('|')[0].strip(' ')) }}" type="video/mp4">
+                                <span>{{ msg.body.split('|')[1].strip(' ') }}</span>
+                            </video>
+                        {% elif msg.type == 'audio' %}
+                            <audio controls>
+                                <source src="{{ url_for('static', filename='chat-details/' + msg.body.split('|')[0]) }}" type="audio/mpeg">
+                            </audio>
+                        {% elif msg.type == 'contact' %}
+                            <div class="contact-card">
+                                <strong>{{ msg.body.split("|")[0] }}</strong><br>
+                                {{ msg.body.split("|")[1] }}
+                            </div>
+                        {% elif msg.type == 'pdf' %}
+                            <iframe src="{{ url_for('static', filename='chat-details/' + msg.body.split('|')[0].strip(' ')) }}" width="100%" height="500px"></iframe>
+                            {{ msg.body.split('|')[0].strip(' ') | replace('\n', '<br>') | safe }}
+                        {% elif msg.type == 'document' %}
+                            <p>{{ msg.body.split('|')[0].strip(' ') | replace('\n', '<br>') | safe }} <a href="{{ url_for('static', filename='chat-details/' + msg.body.split('|')[0].strip(' ')) }}" download>Download File</a></p>
+                            File cannot be previewed.
+                        {% endif %}
+<!--                        <a href="{{ file_url }}" download>Download File</a>-->
+                        <span class="timestamp">{{ msg.time }}</span>
+                        {% if msg.edited %}<span class="edited">Edited</span>{% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="gif-container right-gifs">
+            <img id="rightGif" src="{{ right_gifs[0] }}" alt="GIF">
+        </div>
+    </div>
+
+<script>
+    const leftGifs = {{ left_gifs | tojson }};
+    const rightGifs = {{ right_gifs | tojson }};
+
+    function getRandomIndex(arr) {
+        return Math.floor(Math.random() * arr.length);
+    }
+
+    function changeGifs() {
+        let leftIndex = getRandomIndex(leftGifs);
+        let rightIndex = getRandomIndex(rightGifs);
+
+        document.getElementById('leftGif').src = leftGifs[leftIndex];
+        document.getElementById('rightGif').src = rightGifs[rightIndex];
+    }
+
+    setInterval(changeGifs, 10000);
+</script>
+
+</body>
+</html>
