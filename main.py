@@ -334,7 +334,7 @@ def parse_chat(messages: list) -> list:
         elif ".vcf" in msg_body:
             msg_type = "contact"
             msg_body = extract_contact(msg_body.split(".vcf")[0] + ".vcf")
-        elif ".pdf" in msg_body or ".PDF" in msg_body or detect_encrypted_pdf(f"static/chat-details/{msg_body.replace("(file attached)\n", "")}"):
+        elif ".pdf" in msg_body or ".PDF" in msg_body or detect_encrypted_pdf(f"static/chat-details/{msg_body.replace('(file attached)\n', '')}"):
             msg_type = "pdf"
             msg_body = msg_body.replace("(file attached)\n", "|")
             if msg_body[:3] == "DOC":
